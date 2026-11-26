@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" role="img" aria-label="EXOR Medical Systems">
+  <!-- Olive green D-pill badge matching official uploaded EXOR logo (#93AB4F) -->
+  <path d="M4 0 H195 A45 45 0 0 1 195 90 H4 Q0 90 0 86 V4 Q0 0 4 0 Z" fill="#93AB4F"/>
+  <!-- Stylized E: 3 equal horizontal bars -->
+  <line x1="21" y1="17" x2="59" y2="17" stroke="#F9FFE6" stroke-width="4.2" stroke-linecap="round"/>
+  <line x1="21" y1="33.5" x2="59" y2="33.5" stroke="#F9FFE6" stroke-width="4.2" stroke-linecap="round"/>
+  <line x1="21" y1="50" x2="59" y2="50" stroke="#F9FFE6" stroke-width="4.2" stroke-linecap="round"/>
+  <!-- Stylized X: split top & bottom chevrons -->
+  <path d="M73 17 L91 31 L109 17" fill="none" stroke="#F9FFE6" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M73 50 L91 36 L109 50" fill="none" stroke="#F9FFE6" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Stylized O: 3 curved terracotta-orange arc segments (#AB5827) -->
+  <circle cx="141" cy="33.5" r="17" fill="none" stroke="#AB5827" stroke-width="4.6" stroke-linecap="round" stroke-dasharray="30.5 5.1" transform="rotate(-55 141 33.5)"/>
+  <!-- Stylized R: open loop without left vertical stem + diagonal kick -->
+  <path d="M174 17 H198 A8.5 8.5 0 0 1 198 34 H174 M191 34 L210 50" fill="none" stroke="#F9FFE6" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Subtext: MEDICAL SYSTEMS -->
+  <text x="115" y="73" text-anchor="middle" fill="#F9FFE6" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="11.6" font-weight="500" letter-spacing="2.8">MEDICAL SYSTEMS</text>
+</svg>

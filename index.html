@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EXOR Medical Systems — Medical &amp; Surgical Equipment Distributor | Kozhikode</title>
+  <meta name="description" content="EXOR Medical Systems, Kozhikode — TrustSEAL Verified wholesaler &amp; distributor of medical equipment, CPAP/NIV masks, diagnostic monitors, and surgical supplies." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/exor-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="js/products.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Sticky Header -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="EXOR Medical Systems Home">
+        <img src="assets/images/exor-logo.svg" alt="EXOR Medical Systems" width="132" height="49" class="exor-brand-logo" />
+      </a>
+
+      <div class="header-search" role="search">
+        <svg class="search-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+        <input type="search" id="catalog-search" placeholder="Search Omron, DeckMount, ECG, SKU..." aria-label="Search medical products" autocomplete="off" />
+        <button type="button" id="search-clear-btn" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+      </div>
+
+      <nav class="header-nav hide-md" aria-label="Primary navigation">
+        <a href="#catalog">Products</a>
+        <a href="#contact-us">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="btn btn-sage btn-sm hide-sm">
+          WhatsApp Desk
+        </a>
+        <button type="button" class="cart-trigger" id="open-cart-btn" aria-label="Open shopping cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.5" />
+            <circle cx="18" cy="20" r="1.5" />
+            <path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 1.9-1.5L22 7H6.2" />
+          </svg>
+          <span class="hide-xs">Cart</span>
+          <span class="cart-badge" id="header-cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="hero-eyebrow">Medical &amp; Surgical Distributor &bull; Kozhikode, Kerala</span>
+          <h1>Clinical-Grade Medical Supplies, Delivered Across India.</h1>
+          <p>Authorized supplier of DeckMount CPAP/NIV respiratory masks, Omron &amp; AccuSure diagnostics, Contec ICU monitors, lab consumables, and patient recovery equipment.</p>
+          <div class="hero-cta">
+            <a href="#catalog" class="btn btn-primary btn-md">Browse 124 Products</a>
+            <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="btn btn-sage btn-md">WhatsApp Inquiry</a>
+            <a href="#contact-us" class="btn btn-secondary btn-md hide-sm">Contact &amp; Location</a>
+          </div>
+          <div class="hero-metrics">
+            <div>
+              <strong>2,000+ SKUs</strong>
+              <span>Curated medical range</span>
+            </div>
+            <div>
+              <strong>Since 2019</strong>
+              <span>TrustSEAL &amp; GST Verified</span>
+            </div>
+            <div>
+              <strong>Pan-India</strong>
+              <span>Hospital &amp; retail dispatch</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="assets/images/hero-medical-equipment.jpg" alt="Medical equipment and diagnostic devices" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Catalog -->
+    <section class="catalog-section" id="catalog">
+      <div class="container">
+        <div class="catalog-top">
+          <div>
+            <span class="section-kicker">Verified Inventory</span>
+            <h2>Medical &amp; Surgical Catalog</h2>
+          </div>
+          <span class="catalog-meta" id="catalog-results-count">124 products</span>
+        </div>
+
+        <div class="filter-bar">
+          <div class="category-pills" id="category-filter-pills" role="tablist" aria-label="Filter by department"></div>
+          <div class="sort-wrap">
+            <label for="catalog-sort" class="sr-only">Sort products</label>
+            <select id="catalog-sort" aria-label="Sort products">
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A–Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+
+        <div class="catalog-pagination" id="catalog-pagination" hidden>
+          <span id="pagination-status"></span>
+          <div class="pagination-btns">
+            <button type="button" class="btn btn-primary btn-sm" id="show-more-btn">Load More</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="show-all-btn">Show All</button>
+          </div>
+        </div>
+
+        <div class="empty-catalog" id="empty-catalog" hidden>
+          <p>No products matched your search.</p>
+          <button type="button" class="btn btn-primary btn-sm" id="reset-filters-btn">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Location -->
+    <section class="contact-section" id="contact-us">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <span class="section-kicker">Kozhikode Hub</span>
+          <h2>Visit or Contact EXOR Medical Systems</h2>
+          <img class="office-img" src="assets/images/real/exor-office.jpg" alt="EXOR Medical Systems Kozhikode Office" />
+          <div class="contact-cards">
+            <div class="contact-item">
+              <strong>Registered Office &amp; Warehouse</strong>
+              <span>Bismi Complex, Ozhukkara, 19/3055, Medical College Rd, Kozhikode, Kerala 673008</span>
+            </div>
+            <div class="contact-item">
+              <strong>Phone &amp; WhatsApp</strong>
+              <span><a href="tel:+918129008181">+91 8129 00 81 81</a> &bull; <a href="tel:+917034008181">+91 7034 00 81 81</a> &bull; <a href="tel:+919562008181">+91 9562 00 81 81</a></span>
+            </div>
+            <div class="contact-item">
+              <strong>Email &amp; Hours</strong>
+              <span><a href="mailto:info@exormedicalsystems.com">info@exormedicalsystems.com</a> &bull; Mon–Fri 9:30 AM–6 PM, Sat 9:30 AM–5:30 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="contact-form" class="contact-form">
+          <span class="section-kicker">Quick Quote</span>
+          <h3>Send an Inquiry</h3>
+          <p class="form-sub">Need bulk hospital pricing or an unlisted SKU from our 2,000+ catalog? Reach out directly.</p>
+          <input type="text" id="c-name" required placeholder="Your Name" aria-label="Your Name" />
+          <input type="tel" id="c-phone" required placeholder="Phone / WhatsApp Number" aria-label="Phone Number" />
+          <input type="email" id="c-email" required placeholder="Email Address" aria-label="Email" />
+          <textarea id="c-message" rows="3" required placeholder="Product names, quantities, or hospital requirement..."></textarea>
+          <button type="submit" class="btn btn-primary btn-md">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Clean 3-Column Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/exor-logo.svg" alt="EXOR Medical Systems" width="126" height="47" class="exor-brand-logo" />
+        <p>Wholesaler, trader &amp; distributor of medical, surgical, diagnostic &amp; respiratory equipment in Kozhikode, Kerala.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="#catalog">Product Catalog (124)</a>
+        <a href="#contact-us">Contact &amp; Location</a>
+      </div>
+      <div class="footer-col">
+        <h4>Direct Desk</h4>
+        <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer">WhatsApp: +91 8129 00 81 81</a>
+        <a href="mailto:info@exormedicalsystems.com">info@exormedicalsystems.com</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 EXOR Medical Systems (CEO: Hijas). All rights reserved.</span>
+      <span>GST: 32AXCPV5409P1Z0 &bull; HSN 9018</span>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="drawer-backdrop" id="cart-backdrop" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" hidden>
+    <div class="drawer-header">
+      <h2 id="cart-drawer-title">Order Cart (<span id="cart-drawer-count-text">0</span>)</h2>
+      <button type="button" class="icon-close-btn" id="close-cart-btn" aria-label="Close cart">&times;</button>
+    </div>
+
+    <div class="drawer-body" id="cart-items-container"></div>
+
+    <div class="drawer-footer" id="cart-drawer-footer">
+      <div class="cart-totals">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">₹0</span>
+        </div>
+        <div class="total-row">
+          <span>Pan-India Shipping</span>
+          <span id="cart-shipping">₹0</span>
+        </div>
+        <div class="total-row grand">
+          <span>Estimated Total</span>
+          <span id="cart-total">₹0</span>
+        </div>
+      </div>
+
+      <div class="drawer-cta-stack">
+        <button type="button" class="btn btn-primary btn-block btn-md" id="proceed-checkout-btn">Proceed to Checkout</button>
+        <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="btn btn-sage btn-block btn-md" id="whatsapp-cart-btn">
+          Send Order via WhatsApp
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Product Specs Modal -->
+  <div class="modal-backdrop" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="pm-title" hidden>
+    <div class="modal-dialog modal-lg">
+      <button type="button" class="icon-close-btn modal-close-corner" data-close-modal="product-modal" aria-label="Close">&times;</button>
+      <div class="product-modal-grid" id="product-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" hidden>
+    <div class="modal-dialog modal-md">
+      <button type="button" class="icon-close-btn modal-close-corner" data-close-modal="checkout-modal" aria-label="Close">&times;</button>
+      <div id="checkout-form-view">
+        <h2 id="checkout-title" style="margin:0 0 14px;">Order Checkout</h2>
+        <form id="checkout-form" class="form-stack">
+          <input type="text" id="chk-name" required placeholder="Full Name / Hospital" aria-label="Full Name" />
+          <input type="email" id="chk-email" required placeholder="Email for Invoice" aria-label="Email" />
+          <input type="text" id="chk-address" required placeholder="Delivery Address" aria-label="Delivery Address" />
+          <div class="form-grid">
+            <input type="text" id="chk-city" required placeholder="City" aria-label="City" />
+            <input type="text" id="chk-zip" required placeholder="PIN Code" aria-label="PIN Code" />
+          </div>
+          <div class="checkout-totals-mini" id="checkout-totals-mini"></div>
+          <button type="submit" class="btn btn-primary btn-block btn-md">Confirm Order</button>
+        </form>
+      </div>
+      <div id="checkout-success-view" class="order-success-view" hidden></div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
