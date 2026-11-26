@@ -29,6 +29,8 @@
     showAllBtn: document.getElementById("show-all-btn"),
     searchInput: document.getElementById("catalog-search"),
     searchClearBtn: document.getElementById("search-clear-btn"),
+    searchSuggestions: document.getElementById("search-suggestions"),
+    searchWrap: document.querySelector(".header-search"),
     sortSelect: document.getElementById("catalog-sort"),
     resetFiltersBtn: document.getElementById("reset-filters-btn"),
     headerCartCount: document.getElementById("header-cart-count"),
@@ -148,34 +150,184 @@
     }).join("");
   }
 
+  function editDistance(a, b) {
+    const la = a.length;
+    const lb = b.length;
+    if (la === 0) return lb;
+    if (lb === 0) return la;
+    if (Math.abs(la - lb) > 4) return Math.abs(la - lb) + 2;
+    const prev = Array.from({ length: lb + 1 }, (_, i) => i);
+    for (let i = 1; i <= la; i++) {
+      let cur = [i];
+      for (let j = 1; j <= lb; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        cur[j] = Math.min(cur[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
+      }
+      for (let j = 0; j <= lb; j++) prev[j] = cur[j];
+    }
+    return prev[lb];
+  }
+
+  function isSubsequence(needle, hay) {
+    let i = 0;
+    for (let j = 0; j < hay.length && i < needle.length; j++) {
+      if (needle[i] === hay[j]) i++;
+    }
+    return i === needle.length;
+  }
+
+  function scoreProductMatch(product, query) {
+    const q = query.trim().toLowerCase();
+    if (!q) return 1;
+    const name = (product.name || "").toLowerCase();
+    const brand = (product.brand || "").toLowerCase();
+    const cat = (product.categoryLabel || product.imCategory || "").toLowerCase();
+    const sku = (product.sku || "").toLowerCase();
+    const hay = `${name} ${brand} ${cat} ${sku}`;
+    const words = hay.split(/[^a-z0-9]+/).filter(Boolean);
+    const nameWords = name.split(/[^a-z0-9]+/).filter(Boolean);
+
+    let score = 0;
+    if (name.startsWith(q)) score += 140;
+    else if (nameWords.some((w) => w.startsWith(q))) score += 110;
+    else if (name.includes(q)) score += 85;
+    else if (hay.includes(q)) score += 60;
+
+    const qTokens = q.split(/[^a-z0-9]+/).filter(Boolean);
+    for (const tok of qTokens) {
+      let bestTok = 0;
+      for (const w of words) {
+        if (w === tok) {
+          bestTok = Math.max(bestTok, 65);
+        } else if (w.startsWith(tok)) {
+          bestTok = Math.max(bestTok, 50);
+        } else if (w.includes(tok)) {
+          bestTok = Math.max(bestTok, 38);
+        } else if (tok.length >= 2) {
+          const maxDist = tok.length <= 4 ? 1 : 2;
+          const prefixSlice = w.slice(0, Math.min(w.length, tok.length + 1));
+          const d = Math.min(editDistance(tok, w), editDistance(tok, prefixSlice));
+          if (d <= maxDist) {
+            bestTok = Math.max(bestTok, 40 - d * 12);
+          } else if (isSubsequence(tok, w)) {
+            bestTok = Math.max(bestTok, 22);
+          }
+        }
+      }
+      if (bestTok === 0 && tok.length === 1 && isSubsequence(tok, hay)) {
+        bestTok = 10;
+      }
+      score += bestTok;
+    }
+
+    if (score === 0) {
+      // Soft character overlap fallback so every query can rank closest spelling matches
+      let common = 0;
+      for (const ch of new Set(q.replace(/\s+/g, ""))) {
+        if (hay.includes(ch)) common++;
+      }
+      score = common * 2;
+    }
+    return score;
+  }
+
+  function highlightMatch(text, query) {
+    const raw = String(text || "");
+    const q = query.trim();
+    if (!q) return escapeHtml(raw);
+    const escapedQ = q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    try {
+      const re = new RegExp(escapedQ, "ig");
+      let out = "";
+      let lastIndex = 0;
+      let match;
+      while ((match = re.exec(raw)) !== null) {
+        out += escapeHtml(raw.slice(lastIndex, match.index));
+        out += `<mark>${escapeHtml(match[0])}</mark>`;
+        lastIndex = re.lastIndex;
+      }
+      out += escapeHtml(raw.slice(lastIndex));
+      return out;
+    } catch {
+      return escapeHtml(raw);
+    }
+  }
+
+  function renderSearchSuggestions() {
+    if (!els.searchSuggestions) return;
+    const q = state.search.trim();
+    if (!q) {
+      els.searchSuggestions.hidden = true;
+      els.searchSuggestions.innerHTML = "";
+      return;
+    }
+    const ranked = PRODUCTS.map((p) => ({ p, score: scoreProductMatch(p, q) }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
+
+    const hasStrong = ranked.some((r) => r.score >= 30);
+    const label = hasStrong ? "Suggested products" : "Closest spelling matches";
+    els.searchSuggestions.innerHTML = `
+      <div class="search-suggestion-head">${label}</div>
+      ${ranked
+        .map(
+          ({ p }) => `
+        <button type="button" class="search-suggestion-item" role="option" data-suggest-id="${escapeHtml(p.id)}">
+          <img src="${escapeHtml(p.image)}" alt="" />
+          <span class="search-suggestion-meta">
+            <span class="search-suggestion-name">${highlightMatch(p.name, q)}</span>
+            <span class="search-suggestion-sub">${escapeHtml(p.brand || p.imCategory || p.categoryLabel)}</span>
+          </span>
+          <span class="search-suggestion-price">${formatINR(p.price)}</span>
+        </button>
+      `
+        )
+        .join("")}
+    `;
+    els.searchSuggestions.hidden = false;
+  }
+
+  function hideSearchSuggestions() {
+    if (els.searchSuggestions) els.searchSuggestions.hidden = true;
+  }
+
   function getFilteredProducts() {
     const q = state.search.trim().toLowerCase();
-    let list = PRODUCTS.filter((p) => {
-      if (state.category !== "all" && p.category !== state.category) return false;
-      if (q) {
-        const hay = [p.name, p.brand, p.categoryLabel, p.imCategory, p.sku].join(" ").toLowerCase();
-        if (!hay.includes(q)) return false;
+    const inCategory = PRODUCTS.filter(
+      (p) => state.category === "all" || p.category === state.category
+    );
+
+    let list;
+    let isClosestFallback = false;
+    if (!q) {
+      list = inCategory;
+    } else {
+      const scored = inCategory.map((p) => ({ p, score: scoreProductMatch(p, q) }));
+      const strongMatches = scored.filter((item) => item.score >= 28);
+      if (strongMatches.length > 0) {
+        strongMatches.sort((a, b) => b.score - a.score);
+        list = strongMatches.map((item) => item.p);
+      } else {
+        // Fallback to closest spelling matches across category (or full catalog) — never show "no product found"
+        const pool = inCategory.length > 0 ? scored : PRODUCTS.map((p) => ({ p, score: scoreProductMatch(p, q) }));
+        pool.sort((a, b) => b.score - a.score);
+        list = pool.slice(0, 12).map((item) => item.p);
+        isClosestFallback = true;
       }
-      return true;
-    });
+    }
 
     if (state.sort === "price-asc") list = [...list].sort((a, b) => a.price - b.price);
     else if (state.sort === "price-desc") list = [...list].sort((a, b) => b.price - a.price);
     else if (state.sort === "name-asc") list = [...list].sort((a, b) => a.name.localeCompare(b.name));
-    return list;
+    return { list, isClosestFallback };
   }
 
   function renderCatalog() {
-    const filtered = getFilteredProducts();
+    const { list: filtered, isClosestFallback } = getFilteredProducts();
     const visible = filtered.slice(0, state.visibleLimit);
-    els.catalogResultsCount.textContent = `${filtered.length} products`;
-
-    if (filtered.length === 0) {
-      els.productGrid.innerHTML = "";
-      els.emptyCatalog.hidden = false;
-      els.catalogPagination.hidden = true;
-      return;
-    }
+    els.catalogResultsCount.textContent = isClosestFallback
+      ? `Closest matches (${filtered.length})`
+      : `${filtered.length} products`;
 
     els.emptyCatalog.hidden = true;
     els.productGrid.innerHTML = visible
@@ -460,7 +612,41 @@
       state.search = els.searchInput.value;
       state.visibleLimit = PAGE_SIZE;
       els.searchClearBtn.hidden = state.search.length === 0;
+      renderSearchSuggestions();
       renderCatalog();
+    });
+
+    els.searchInput.addEventListener("focus", () => {
+      if (state.search.trim().length > 0) renderSearchSuggestions();
+    });
+
+    els.searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        hideSearchSuggestions();
+        els.searchInput.blur();
+      }
+    });
+
+    if (els.searchSuggestions) {
+      els.searchSuggestions.addEventListener("click", (event) => {
+        const item = event.target.closest("[data-suggest-id]");
+        if (!item) return;
+        const pid = item.getAttribute("data-suggest-id");
+        const prod = getProductById(pid);
+        if (!prod) return;
+        state.search = prod.name;
+        els.searchInput.value = prod.name;
+        els.searchClearBtn.hidden = false;
+        hideSearchSuggestions();
+        renderCatalog();
+        openProductModal(pid);
+      });
+    }
+
+    document.addEventListener("click", (event) => {
+      if (els.searchWrap && !els.searchWrap.contains(event.target)) {
+        hideSearchSuggestions();
+      }
     });
 
     els.searchClearBtn.addEventListener("click", () => {
@@ -468,6 +654,7 @@
       state.visibleLimit = PAGE_SIZE;
       els.searchInput.value = "";
       els.searchClearBtn.hidden = true;
+      hideSearchSuggestions();
       renderCatalog();
     });
 

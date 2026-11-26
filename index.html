@@ -26,8 +26,9 @@
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.3-4.3" />
         </svg>
-        <input type="search" id="catalog-search" placeholder="Search Omron, DeckMount, ECG, SKU..." aria-label="Search medical products" autocomplete="off" />
+        <input type="search" id="catalog-search" placeholder="Search Omron, DeckMount, ECG, SKU..." aria-label="Search medical products" autocomplete="off" aria-autocomplete="list" aria-controls="search-suggestions" />
         <button type="button" id="search-clear-btn" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+        <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Product suggestions" hidden></div>
       </div>
 
       <nav class="header-nav hide-md" aria-label="Primary navigation">
