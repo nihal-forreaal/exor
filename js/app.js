@@ -297,26 +297,8 @@
     return score;
   }
 
-  function highlightMatch(text, query) {
-    const raw = String(text || "");
-    const q = query.trim();
-    if (!q) return escapeHtml(raw);
-    const escapedQ = q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    try {
-      const re = new RegExp(escapedQ, "ig");
-      let out = "";
-      let lastIndex = 0;
-      let match;
-      while ((match = re.exec(raw)) !== null) {
-        out += escapeHtml(raw.slice(lastIndex, match.index));
-        out += `<mark>${escapeHtml(match[0])}</mark>`;
-        lastIndex = re.lastIndex;
-      }
-      out += escapeHtml(raw.slice(lastIndex));
-      return out;
-    } catch {
-      return escapeHtml(raw);
-    }
+  function highlightMatch(text) {
+    return escapeHtml(String(text || ""));
   }
 
   function renderSearchSuggestions() {
