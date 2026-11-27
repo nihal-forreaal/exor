@@ -305,6 +305,21 @@ a {
   box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
 }
 
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 .header-search .search-clear {
   position: absolute;
   right: 12px;
@@ -316,6 +331,7 @@ a {
   line-height: 1;
   color: var(--text-light);
   padding: 4px;
+  cursor: pointer;
 }
 
 .search-suggestions {
