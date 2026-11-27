@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>EXOR Medical Systems — Medical &amp; Surgical Equipment Distributor | Kozhikode</title>
   <meta name="description" content="EXOR Medical Systems, Kozhikode — TrustSEAL Verified wholesaler &amp; distributor of medical equipment, CPAP/NIV masks, diagnostic monitors, and surgical supplies." />
-  <link rel="icon" type="image/svg+xml" href="assets/images/exor-logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/exor-logo.svg?v=4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <script defer src="js/products.js"></script>
   <script defer src="js/app.js"></script>
@@ -18,7 +18,7 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="#top" class="brand" aria-label="EXOR Medical Systems Home">
-        <img src="assets/images/exor-logo.svg" alt="EXOR Medical Systems" width="132" height="49" class="exor-brand-logo" />
+        <img src="assets/images/exor-logo.svg?v=4" alt="EXOR Medical Systems" width="132" height="49" class="exor-brand-logo" />
       </a>
 
       <div class="header-search" role="search">
@@ -58,31 +58,36 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <span class="hero-eyebrow">Medical &amp; Surgical Distributor &bull; Kozhikode, Kerala</span>
           <h1>Clinical-Grade Medical Supplies, Delivered Across India.</h1>
           <p>Authorized supplier of DeckMount CPAP/NIV respiratory masks, Omron &amp; AccuSure diagnostics, Contec ICU monitors, lab consumables, and patient recovery equipment.</p>
           <div class="hero-cta">
-            <a href="#catalog" class="btn btn-primary btn-md">Browse 124 Products</a>
-            <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="btn btn-sage btn-md">WhatsApp Inquiry</a>
-            <a href="#contact-us" class="btn btn-secondary btn-md hide-sm">Contact &amp; Location</a>
+            <a href="#catalog" class="btn btn-primary btn-md">Browse 124 Products &rarr;</a>
+            <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-md">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              WhatsApp Desk
+            </a>
+            <a href="https://maps.google.com/?q=Bismi+Complex,+Ozhukkara,+19/3055,+Medical+College+Rd,+Kozhikode,+Kerala+673008" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-md btn-get-location" aria-label="Get Location on Google Maps">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Get Location
+            </a>
           </div>
-          <div class="hero-metrics">
-            <div>
-              <strong>2,000+ SKUs</strong>
-              <span>Curated medical range</span>
+          <div class="hero-metrics" id="hero-metrics">
+            <div class="metric-item">
+              <strong class="count-up" data-target="2000" data-suffix="+ SKUs">2,000+ SKUs</strong>
+              <span>Curated Medical Range</span>
             </div>
-            <div>
-              <strong>Since 2019</strong>
-              <span>TrustSEAL &amp; GST Verified</span>
+            <div class="metric-item">
+              <strong class="count-up" data-target="5" data-suffix="+ Years">5+ Years</strong>
+              <span>TrustSEAL &amp; GST (Since 2019)</span>
             </div>
-            <div>
+            <div class="metric-item">
               <strong>Pan-India</strong>
-              <span>Hospital &amp; retail dispatch</span>
+              <span>Hospital &amp; Retail Dispatch</span>
             </div>
           </div>
         </div>
         <div class="hero-photo">
-          <img src="assets/images/hero-medical-equipment.jpg" alt="Medical equipment and diagnostic devices" />
+          <img src="assets/images/hero-codex-clean.jpg" alt="Clinical medical equipment — EXOR Medical Systems" />
         </div>
       </div>
     </section>
@@ -100,9 +105,30 @@
 
         <div class="filter-bar">
           <div class="category-pills" id="category-filter-pills" role="tablist" aria-label="Filter by department"></div>
-          <div class="sort-wrap">
-            <label for="catalog-sort" class="sr-only">Sort products</label>
-            <select id="catalog-sort" aria-label="Sort products">
+          <div class="sort-wrap" id="custom-sort-wrap">
+            <button type="button" class="sort-trigger" id="sort-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort products">
+              <span class="sort-label" id="sort-current-label">Sort: Featured</span>
+              <svg class="sort-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <ul class="sort-menu" id="sort-menu" role="listbox" aria-label="Sort options" hidden>
+              <li class="sort-option is-selected" role="option" aria-selected="true" data-sort-val="featured">
+                <span>Featured</span>
+                <svg class="sort-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </li>
+              <li class="sort-option" role="option" aria-selected="false" data-sort-val="price-asc">
+                <span>Price: Low to High</span>
+                <svg class="sort-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </li>
+              <li class="sort-option" role="option" aria-selected="false" data-sort-val="price-desc">
+                <span>Price: High to Low</span>
+                <svg class="sort-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </li>
+              <li class="sort-option" role="option" aria-selected="false" data-sort-val="name-asc">
+                <span>Name: A–Z</span>
+                <svg class="sort-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </li>
+            </ul>
+            <select id="catalog-sort" class="sr-only" aria-hidden="true" tabindex="-1">
               <option value="featured">Sort: Featured</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
@@ -134,11 +160,34 @@
         <div class="contact-info">
           <span class="section-kicker">Kozhikode Hub</span>
           <h2>Visit or Contact EXOR Medical Systems</h2>
-          <img class="office-img" src="assets/images/real/exor-office.jpg" alt="EXOR Medical Systems Kozhikode Office" />
+          
+          <!-- Interactive Google Maps Card -->
+          <div class="map-embed-card">
+            <iframe
+              title="EXOR Medical Systems Google Maps Location"
+              src="https://maps.google.com/maps?q=Bismi+Complex,+Ozhukkara,+Medical+College+Rd,+Kozhikode,+Kerala+673008&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="map-card-bar">
+              <div class="map-card-meta">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-accent)" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Bismi Complex, Ozhukkara, Medical College Rd, Kozhikode</span>
+              </div>
+              <a href="https://maps.google.com/?q=Bismi+Complex,+Ozhukkara,+19/3055,+Medical+College+Rd,+Kozhikode,+Kerala+673008" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm btn-map-pin">
+                Get Directions &nearr;
+              </a>
+            </div>
+          </div>
+
           <div class="contact-cards">
             <div class="contact-item">
               <strong>Registered Office &amp; Warehouse</strong>
               <span>Bismi Complex, Ozhukkara, 19/3055, Medical College Rd, Kozhikode, Kerala 673008</span>
+              <a href="https://maps.google.com/?q=Bismi+Complex,+Ozhukkara,+19/3055,+Medical+College+Rd,+Kozhikode,+Kerala+673008" target="_blank" rel="noopener noreferrer" class="location-inline-link">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Get Location on Google Maps &rarr;
+              </a>
             </div>
             <div class="contact-item">
               <strong>Phone &amp; WhatsApp</strong>
@@ -169,7 +218,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <img src="assets/images/exor-logo.svg" alt="EXOR Medical Systems" width="126" height="47" class="exor-brand-logo" />
+        <img src="assets/images/exor-logo.svg?v=4" alt="EXOR Medical Systems" width="126" height="47" class="exor-brand-logo" />
         <p>Wholesaler, trader &amp; distributor of medical, surgical, diagnostic &amp; respiratory equipment in Kozhikode, Kerala.</p>
       </div>
       <div class="footer-col">
@@ -253,6 +302,26 @@
       <div id="checkout-success-view" class="order-success-view" hidden></div>
     </div>
   </div>
+
+  <!-- Floating Mobile Quick Action Bar (Phones < 640px) -->
+  <nav class="mobile-action-bar" aria-label="Mobile quick actions">
+    <a href="tel:+918129008181" class="mob-bar-btn mob-bar-call" aria-label="Call Sales Desk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Call Desk</span>
+    </a>
+    <a href="https://maps.google.com/?q=Bismi+Complex,+Ozhukkara,+19/3055,+Medical+College+Rd,+Kozhikode,+Kerala+673008" target="_blank" rel="noopener noreferrer" class="mob-bar-btn mob-bar-loc" aria-label="Get Location">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Location</span>
+    </a>
+    <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="mob-bar-btn mob-bar-wa" aria-label="WhatsApp Inquiry">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <button type="button" class="mob-bar-btn mob-bar-cart" id="mobile-cart-btn" aria-label="Open Cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 1.9-1.5L22 7H6.2"/></svg>
+      <span>Cart (<span id="mobile-cart-count">0</span>)</span>
+    </button>
+  </nav>
 
   <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
 </body>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title id="page-title">EXOR Medical Systems — Product Details</title>
+  <meta name="description" id="page-meta-desc" content="Clinical-grade medical and surgical equipment supplied by EXOR Medical Systems, Kozhikode." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/exor-logo.svg?v=4" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="js/products.js"></script>
+  <script defer src="js/product-page.js"></script>
+</head>
+<body class="pdp-body">
+  <!-- Sticky Header -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="EXOR Medical Systems Home">
+        <img src="assets/images/exor-logo.svg?v=4" alt="EXOR Medical Systems" width="132" height="49" class="exor-brand-logo" />
+      </a>
+
+      <div class="header-search" role="search">
+        <svg class="search-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+        <input type="search" id="catalog-search" placeholder="Search Omron, DeckMount, ECG, SKU..." aria-label="Search medical products" autocomplete="off" aria-autocomplete="list" aria-controls="search-suggestions" />
+        <button type="button" id="search-clear-btn" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+        <div class="search-suggestions" id="search-suggestions" role="listbox" aria-label="Product suggestions" hidden></div>
+      </div>
+
+      <nav class="header-nav hide-md" aria-label="Primary navigation">
+        <a href="index.html#catalog">Products</a>
+        <a href="index.html#contact-us">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="btn btn-sage btn-sm hide-sm">
+          WhatsApp Desk
+        </a>
+        <button type="button" class="cart-trigger" id="open-cart-btn" aria-label="Open shopping cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.5" />
+            <circle cx="18" cy="20" r="1.5" />
+            <path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 1.9-1.5L22 7H6.2" />
+          </svg>
+          <span class="hide-xs">Cart</span>
+          <span class="cart-badge" id="header-cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pdp-main-content">
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <nav class="pdp-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-hidden="true">&rsaquo;</li>
+          <li><a href="index.html#catalog" id="bc-category-link">Catalog</a></li>
+          <li aria-hidden="true">&rsaquo;</li>
+          <li aria-current="page" id="bc-product-name">Product Details</li>
+        </ol>
+      </nav>
+
+      <!-- Main Product Display Grid -->
+      <div id="pdp-content-area">
+        <!-- Rendered dynamically by product-page.js -->
+        <div class="pdp-loading">Loading medical product specifications...</div>
+      </div>
+
+      <!-- Related Products Section -->
+      <section class="pdp-related-section" id="related-section" hidden>
+        <div class="related-top">
+          <span class="section-kicker">Recommended Equipment</span>
+          <h2>Related Products in this Category</h2>
+        </div>
+        <div class="product-grid" id="related-product-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Clean 3-Column Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/exor-logo.svg?v=4" alt="EXOR Medical Systems" width="126" height="47" class="exor-brand-logo" />
+        <p>Wholesaler, trader &amp; distributor of medical, surgical, diagnostic &amp; respiratory equipment in Kozhikode, Kerala.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="index.html#catalog">Product Catalog (124)</a>
+        <a href="index.html#contact-us">Contact &amp; Location</a>
+      </div>
+      <div class="footer-col">
+        <h4>Direct Desk</h4>
+        <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer">WhatsApp: +91 8129 00 81 81</a>
+        <a href="mailto:info@exormedicalsystems.com">info@exormedicalsystems.com</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 EXOR Medical Systems (CEO: Hijas). All rights reserved.</span>
+      <span>GST: 32AXCPV5409P1Z0 &bull; HSN 9018</span>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="drawer-backdrop" id="cart-backdrop" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" hidden>
+    <div class="drawer-header">
+      <h2 id="cart-drawer-title">Order Cart (<span id="cart-drawer-count-text">0</span>)</h2>
+      <button type="button" class="icon-close-btn" id="close-cart-btn" aria-label="Close cart">&times;</button>
+    </div>
+
+    <div class="drawer-body" id="cart-items-container"></div>
+
+    <div class="drawer-footer" id="cart-drawer-footer">
+      <div class="cart-totals">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">₹0</span>
+        </div>
+        <div class="total-row">
+          <span>Pan-India Shipping</span>
+          <span id="cart-shipping">₹0</span>
+        </div>
+        <div class="total-row grand">
+          <span>Estimated Total</span>
+          <span id="cart-total">₹0</span>
+        </div>
+      </div>
+
+      <div class="drawer-cta-stack">
+        <button type="button" class="btn btn-primary btn-block btn-md" id="proceed-checkout-btn">Proceed to Checkout</button>
+        <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="btn btn-sage btn-block btn-md" id="whatsapp-cart-btn">
+          Send Order via WhatsApp
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title" hidden>
+    <div class="modal-dialog modal-md">
+      <button type="button" class="icon-close-btn modal-close-corner" data-close-modal="checkout-modal" aria-label="Close">&times;</button>
+      <div id="checkout-form-view">
+        <h2 id="checkout-title" style="margin:0 0 14px;">Order Checkout</h2>
+        <form id="checkout-form" class="form-stack">
+          <input type="text" id="chk-name" required placeholder="Full Name / Hospital" aria-label="Full Name" />
+          <input type="email" id="chk-email" required placeholder="Email for Invoice" aria-label="Email" />
+          <input type="text" id="chk-address" required placeholder="Delivery Address" aria-label="Delivery Address" />
+          <div class="form-grid">
+            <input type="text" id="chk-city" required placeholder="City" aria-label="City" />
+            <input type="text" id="chk-zip" required placeholder="PIN Code" aria-label="PIN Code" />
+          </div>
+          <div class="checkout-totals-mini" id="checkout-totals-mini"></div>
+          <button type="submit" class="btn btn-primary btn-block btn-md">Confirm Order</button>
+        </form>
+      </div>
+      <div id="checkout-success-view" class="order-success-view" hidden></div>
+    </div>
+  </div>
+
+  <!-- Floating Mobile Quick Action Bar (Phones < 640px) -->
+  <nav class="mobile-action-bar" aria-label="Mobile quick actions">
+    <a href="tel:+918129008181" class="mob-bar-btn mob-bar-call" aria-label="Call Sales Desk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Call Desk</span>
+    </a>
+    <a href="https://maps.google.com/?q=Bismi+Complex,+Ozhukkara,+19/3055,+Medical+College+Rd,+Kozhikode,+Kerala+673008" target="_blank" rel="noopener noreferrer" class="mob-bar-btn mob-bar-loc" aria-label="Get Location">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Location</span>
+    </a>
+    <a href="https://wa.me/918129008181" target="_blank" rel="noopener noreferrer" class="mob-bar-btn mob-bar-wa" aria-label="WhatsApp Inquiry">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <button type="button" class="mob-bar-btn mob-bar-cart" id="mobile-cart-btn" aria-label="Open Cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.4 12.2a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 1.9-1.5L22 7H6.2"/></svg>
+      <span>Cart (<span id="mobile-cart-count">0</span>)</span>
+    </button>
+  </nav>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
